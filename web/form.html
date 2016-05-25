@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+	<h1 align="center">To OSI Database HTML</h1>
+
+    <!-- Здесь можно было бы:
+     1) выбрать файл
+     2) выбрать группу
+     3)
+    -->
+
+
+	<!-- From JSP repeat the query-->
+	<form method = "POST"
+     action = "LookThroughDatabase.do">
+
+
+        Please type:
+        <br><br>
+        Your login (email):
+        <input type="text" name="loginEmail" size = 25>
+
+        <br><br>
+        Database's Url:
+        <input type="text" name="db_url" size = 25>
+
+        <br><br>
+        Database UserName:
+        <input type="text" name="db_user" size = 25>
+
+        <br><br>
+        Database Password:
+        <input type="text" name="db_password" size = 25>
+        <br><br><br>
+
+
+
+        HTML: Select Group to inspect<p>
+     Type elementID from your Browser:
+
+
+        <input type="text" name="elementId" size = 25>
+
+
+        <!--
+                <select name = "groupId" size = "1">
+                  <option value = "3345"> Father </option>
+                  <option value = "3341"> Son </option>
+                </select>
+
+        -->
+              <br><br>
+              <left>
+                <input type = "SUBMIT">
+              </left>
+            </form>
+
+        </body>
+        </html>
