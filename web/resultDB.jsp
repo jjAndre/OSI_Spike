@@ -61,6 +61,17 @@
 
 
 
+		Map<Integer, Integer> mapXY = (HashMap)request.getAttribute("listitems");
+        		Set<Map.Entry<Integer, Integer>> set = mapXY.entrySet();
+
+        		for(Map.Entry<Integer, Integer> s : set){
+        		int curItemId = s.getKey();
+        		int curItemType = s.getValue();
+
+        		out.print("<br>Item_ID: " + curItemId + " Item_type: " + curItemType);
+        		}
+
+		/*
 		Map<Integer, int[]> mapXY = (HashMap)request.getAttribute("listitems");
 		Set<Map.Entry<Integer, int[]>> set = mapXY.entrySet();
 
@@ -70,6 +81,7 @@
 
 		out.print("<br>Item_ID: " + curKey + " X: " + curAr[0] + ", Y: " + curAr[1]);
 		}
+		*/
 
 
 		/*

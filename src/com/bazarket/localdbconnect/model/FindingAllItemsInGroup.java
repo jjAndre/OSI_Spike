@@ -124,8 +124,10 @@ public class FindingAllItemsInGroup {
     // focusMove - фокус на который нужно сдвинуть все элементы группы
     // isToSaveToDB - определ€етс€ делать ли запись изменени€ фокуса
     // (вообще конечно, если есть focusMove), то уже есть необходимость делать запись новых координат элементов группы
+
     public void addAllItems(int rootElementId, int[] focusMove, boolean isToSaveToDB) throws SQLException {
 
+        //¬от здесь мы должны начать использовать NodeDao.getNode() или даже может быть написать KonstruktorElemennDao.getElement()
         ResultSet rs = null;
 
         String myQuery = "SELECT item_id, item_type FROM c_groups_items where group_id = ";

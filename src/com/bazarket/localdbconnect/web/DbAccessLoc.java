@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import com.bazarket.localdbconnect.model.*;
 import java.sql.*;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class DbAccessLoc extends HttpServlet{
 	
@@ -38,26 +38,36 @@ public class DbAccessLoc extends HttpServlet{
 		String loginFromHtml = request.getParameter("loginEmail");
 
 
-
-	//takeFocus1
-	//takeFocus2
-
-
-	//у объекта типа FindingAllItemsInGroup мы будем вызывать метод addAllItems (но мы просто достаем элементы группы, фокус не меняем)
-			FindingAllItemsInGroup allItems = new FindingAllItemsInGroup(db);
-	//FindingAllItemsInGroup allItems = new FindingAllItemsInGroup(db, idElementInt, loginFromHtml);
-
-		//List<Integer> allGroupItemsList = null;
-		HashMap<Integer, int[]> allGroupItemsList= null;
-
+		//moove to DAO start
+		Group group;
+		HashMap<Integer,Integer> allGroupItemsList = null;
 		try {
-			//allGroupItemsList = allItems.addAllItems(idElementInt,false,null);
-			allItems.addAllItems(idElementInt, null, false);
-			allGroupItemsList = allItems.getOldMapOfXY();
+			group = (Group) KonstrElementDao.getKonstrElement(idElementInt, 1, true);
+			//1 means "group"
+			// true - to create the map of elements, which a Group consist of
+
+			allGroupItemsList = group.getElementsMap();
+			System.out.println("allGroupItemsList.size() " + allGroupItemsList.size());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		//moove to DAO finish
+
+
+
+		/*//у объекта типа FindingAllItemsInGroup мы будем вызывать метод addAllItems (но мы просто достаем элементы группы, фокус не меняем)
+			FindingAllItemsInGroup allItems = new FindingAllItemsInGroup(db);
+
+			HashMap<Integer, int[]> allGroupItemsList= null;
+
+			try {
+				allItems.addAllItems(idElementInt, null, false);
+				allGroupItemsList = allItems.getOldMapOfXY();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}*/
 
 
 		//
