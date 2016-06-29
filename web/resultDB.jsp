@@ -41,12 +41,14 @@
 
                      For AskFocus.do<p>
         -->
-                  Type elementID from your Browser:
-                     <input type="text" name="elementId" size = 25>
 
+        Type elementID from your Browser:
+               <input type="text" name="elementId" size = 25>
+
+        <!--
                   <br>Type elementType 1 for groups
-                     <input type="text" name="elementType" size = 25>
-
+                  <input type="text" name="elementType" size = 25>
+        -->
               <br><br>
 
               <left>
@@ -61,15 +63,21 @@
 
 
 
-		Map<Integer, Integer> mapXY = (HashMap)request.getAttribute("listitems");
-        		Set<Map.Entry<Integer, Integer>> set = mapXY.entrySet();
+		Map<int[], int[]> groupItemsMap = null;
+		Set<Map.Entry<int[], int[]>> set = null;
 
-        		for(Map.Entry<Integer, Integer> s : set){
-        		int curItemId = s.getKey();
-        		int curItemType = s.getValue();
+		groupItemsMap = (HashMap)request.getAttribute("groupItemsMap");
+        set = groupItemsMap.entrySet();
 
-        		out.print("<br>Item_ID: " + curItemId + " Item_type: " + curItemType);
-        		}
+        for(Map.Entry<int[], int[]> s : set){
+        		//s.getKey[0], s.getKey[1]
+
+        	int curItemId = s.getKey()[0];
+        	int curItemType = s.getKey()[1];
+        		//int curItemType = s.getValue();
+
+        	out.print("<br>Item_ID: " + curItemId + " Item_type: " + curItemType);
+        }
 
 		/*
 		Map<Integer, int[]> mapXY = (HashMap)request.getAttribute("listitems");

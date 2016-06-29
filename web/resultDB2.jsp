@@ -9,15 +9,15 @@
 
 
 <body>
-	<h1 align="center">From OSI Database JSP</h1>
+	<h1 align="center">RsultDb2 JSP</h1>
 	<p>		
 
 
 
 
-		<br>Focus Position N1: x = ${focusXY1[0]}, y = ${focusXY1[1]})<br>
+		<br>Actual RootGroup Position: x = ${RootGroupActualCoords[0]}, y = ${RootGroupActualCoords[1]})<br>
 
-		<br>Focus Position N2: x = ${focusXY2[0]}, y = ${focusXY2[1]}<br>
+		<br>Previous RootGroup Position: x = ${RootGroupPreviousCoords[0]}, y = ${RootGroupPreviousCoords[1]}<br>
 
 
 
@@ -28,8 +28,10 @@
              Type elementID from your Browser:
                      <input type="text" name="elementId" size = 25>
 
+                     <!--
                      <br><br>Type elementType 1 for groups
                      <input type="text" name="elementType" size = 25>
+                     -->
 
 
 

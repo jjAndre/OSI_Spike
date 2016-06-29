@@ -7,7 +7,7 @@
 
  <servlet>
  	<servlet-name>DBAccessLocal</servlet-name>
- 	<servlet-class>com.bazarket.localdbconnect.web.DbAccessLoc</servlet-class>
+ 	<servlet-class>com.bazarket.localdbconnect.controllers.DbAccessLoc</servlet-class>
  </servlet>
 
  <servlet-mapping>
@@ -17,7 +17,7 @@
 
     <servlet>
         <servlet-name>DBAccessAskFocus</servlet-name>
-        <servlet-class>com.bazarket.localdbconnect.web.DbAccessLocForSmth</servlet-class>
+        <servlet-class>com.bazarket.localdbconnect.controllers.DbAccessLocForSmth</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -29,8 +29,8 @@
 
  <listener>
      <listener-class>
-	 com.bazarket.localdbconnect.web.DbServletContextListener
-	 </listener-class>
+         com.bazarket.localdbconnect.controllers.DbServletContextListener
+     </listener-class>
  </listener>
  
 </web-app>
