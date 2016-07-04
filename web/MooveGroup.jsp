@@ -87,10 +87,12 @@ Here are 2 sets of the data are on a screen
        action = "http://localhost:8080/OSI-localv2/AskFocus.do">
 
 
-       <input type = "submit" name = "newGroupMove" value = "true">
        <!--
-       <input type = "submit" value = "To moove new Group items">
+       <input type = "submit" name = "newGroupMove" value = "true">
        -->
+       
+       <input type = "submit" value = "To moove new Group items">
+
 </form>
 
 </body>

@@ -6,10 +6,10 @@ package com.bazarket.localdbconnect.controllers;
 
 import java.io.*;
 import java.sql.Connection;
-import java.util.HashMap;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.bazarket.localdbconnect.Entities.WSimplMapGroup;
 import com.bazarket.localdbconnect.Entities.Group;
 import com.bazarket.localdbconnect.model.ElementsOperations.MakeMapMooved;
 import com.bazarket.localdbconnect.model.ElementsOperations.RemakeMap;
@@ -29,6 +29,9 @@ public class DbAccessLocForSmth extends HttpServlet {
 
         private final static boolean SAVE_TO_DB_TRUE = true;
         private final static boolean SAVE_TO_DB_FALSE = false;
+
+        private final static int CHANGE_GROUP_ACTUAL_ITEMS = 1;
+        private final static int CHANGE_GROUP_PREVIOUS_ITEMS = 2;
 
 
         private static Group transObjectGroup;
@@ -112,11 +115,15 @@ public class DbAccessLocForSmth extends HttpServlet {
 
          ReturnPreviousItems.returnPreviousAllGroupItemsCoords(transObjectGroup);
 
-    HashMap<Integer, int[]> simpleActualItemsGroup = RemakeMap.remake((HashMap<int[], int[]>) transObjectGroup.getActualItemsGroupMap());
-    HashMap<Integer, int[]> simplePreviousItemsGroup = RemakeMap.remake((HashMap<int[], int[]>) transObjectGroup.getPreviousItemsGroupMap());
+            /*HashMap<Integer, int[]> simpleActualItemsGroup = RemakeMap.remake((HashMap<int[], int[]>) transObjectGroup.getActualItemsGroupMap());
+            HashMap<Integer, int[]> simplePreviousItemsGroup = RemakeMap.remake((HashMap<int[], int[]>) transObjectGroup.getPreviousItemsGroupMap());*/
 
-    request.setAttribute("oldMapOfXY", simpleActualItemsGroup);
-    request.setAttribute("newMapOfXY", simplePreviousItemsGroup);
+            WSimplMapGroup transObjectSimpleGroupWActualItemsMap = RemakeMap.returnSimplifiedTransObjectGroup(transObjectGroup, CHANGE_GROUP_ACTUAL_ITEMS);
+            WSimplMapGroup transObjectSimpleGroupWPreviousItemsMap = RemakeMap.returnSimplifiedTransObjectGroup(transObjectGroup, CHANGE_GROUP_PREVIOUS_ITEMS);
+
+
+            request.setAttribute("oldMapOfXY", transObjectSimpleGroupWPreviousItemsMap.getSimpleGroupItemsMap());
+            request.setAttribute("newMapOfXY", transObjectSimpleGroupWActualItemsMap.getSimpleGroupItemsMap());
 
             RequestDispatcher view = request.getRequestDispatcher("MooveGroup.jsp");
             view.forward(request, response);
@@ -199,12 +206,23 @@ public class DbAccessLocForSmth extends HttpServlet {
                     /*System.out.println("DbAccessLocForSmth. line 228 .getActualItemsGroupMap().size(): " + transObjectGroup.getActualItemsGroupMap().size());
                     System.out.println("DbAccessLocForSmth. line 229 .getPreviousItemsGroupMap().size(): " + transObjectGroup.getPreviousItemsGroupMap().size());*/
 
+            WSimplMapGroup transObjectSimpleGroupWActualItemsMap = RemakeMap.returnSimplifiedTransObjectGroup(transObjectGroup, CHANGE_GROUP_ACTUAL_ITEMS);
 
-        HashMap<Integer, int[]> simpleActualItemsGroup = RemakeMap.remake((HashMap<int[], int[]>) transObjectGroup.getActualItemsGroupMap());
-        HashMap<Integer, int[]> simplePreviousItemsGroup = RemakeMap.remake((HashMap<int[], int[]>) transObjectGroup.getPreviousItemsGroupMap());
+                //Test for file 218? group 3403
+                System.out.println("DBAccessLocForSmth.transObjectSimpleGroupWActualItemsMap " + transObjectSimpleGroupWActualItemsMap.getSimpleGroupItemsMap().get(31087)[0]);
 
-        request.setAttribute("oldMapOfXY", simpleActualItemsGroup);
-        request.setAttribute("newMapOfXY", simplePreviousItemsGroup);
+            WSimplMapGroup transObjectSimpleGroupWPreviousItemsMap = RemakeMap.returnSimplifiedTransObjectGroup(transObjectGroup, CHANGE_GROUP_PREVIOUS_ITEMS);
+
+                System.out.println("DBAccessLocForSmth.transObjectSimpleGroupWPreviousItemsMap " + transObjectSimpleGroupWPreviousItemsMap.getSimpleGroupItemsMap().get(31087)[0]);
+
+
+
+
+                request.setAttribute("newMapOfXY", transObjectSimpleGroupWActualItemsMap.getSimpleGroupItemsMap());
+                request.setAttribute("oldMapOfXY", transObjectSimpleGroupWPreviousItemsMap.getSimpleGroupItemsMap());
+
+                System.out.println("DBAccessLocForSmth220.transObjectSimpleGroupWActualItemsMap " + transObjectSimpleGroupWActualItemsMap.getSimpleGroupItemsMap().get(31087)[0]);
+                System.out.println("DBAccessLocForSmth220.transObjectSimpleGroupWPreviousItemsMap " + transObjectSimpleGroupWPreviousItemsMap.getSimpleGroupItemsMap().get(31087)[0]);
 
                 RequestDispatcher view = request.getRequestDispatcher("MooveGroup.jsp");
                 view.forward(request, response);

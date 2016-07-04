@@ -25,11 +25,17 @@ public class Group extends KonstruktorElement {
     private Map<int[], int[]> previousItemsGroupMap;
     private Map<int[], int[]> actualItemsGroupMap;
 
+    //
+    private Set<KonstruktorElement> groupPreviousItemsSet;
+    private Set<KonstruktorElement> groupActualItemsSet;
+    //
+
+    private GroupDao groupDao;
+
     private final static int GROUP_TYPE = 1;
     private final static boolean TO_SAVE_TO_DB_TRUE = true;
 
-    private GroupDao groupDao;
-    //private KonstrElementDao konstrElementDao = new KonstrElementDao();
+
 
 
 
@@ -41,7 +47,7 @@ public class Group extends KonstruktorElement {
 
     }
 
-    public Map<int[], int[]>getActualItemsGroupMap(){
+    public Map<int[], int[]> getActualItemsGroupMap(){
         return actualItemsGroupMap;
     }
 
