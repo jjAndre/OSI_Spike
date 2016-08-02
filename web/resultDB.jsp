@@ -63,33 +63,37 @@
 
 
 
-		Map<int[], int[]> groupItemsMap = null;
-		Set<Map.Entry<int[], int[]>> set = null;
+		//Disabled on july 27, 2016
+			/*
+			Map<int[], int[]> groupItemsMap = null;
+			Set<Map.Entry<int[], int[]>> set = null;
 
-		groupItemsMap = (HashMap)request.getAttribute("groupItemsMap");
-        set = groupItemsMap.entrySet();
+			groupItemsMap = (HashMap)request.getAttribute("groupItemsMap");
+        	set = groupItemsMap.entrySet();
 
-        for(Map.Entry<int[], int[]> s : set){
+        	for(Map.Entry<int[], int[]> s : set){
         		//s.getKey[0], s.getKey[1]
 
-        	int curItemId = s.getKey()[0];
-        	int curItemType = s.getKey()[1];
+        		int curItemId = s.getKey()[0];
+        		int curItemType = s.getKey()[1];
         		//int curItemType = s.getValue();
 
-        	out.print("<br>Item_ID: " + curItemId + " Item_type: " + curItemType);
-        }
+        		out.print("<br>Item_ID: " + curItemId + " Item_type: " + curItemType);
+        	}
+        	*/
 
-		/*
-		Map<Integer, int[]> mapXY = (HashMap)request.getAttribute("listitems");
+		//Unabled on July 27, 2016
+
+		HashMap<Integer, int[]> mapXY = (HashMap)request.getAttribute("groupItemsMap");
 		Set<Map.Entry<Integer, int[]>> set = mapXY.entrySet();
 
 		for(Map.Entry<Integer, int[]> s : set){
-		int curKey = s.getKey();
-		int[] curAr = s.getValue();
+			int curKey = s.getKey();
+			int[] curAr = s.getValue();
 
-		out.print("<br>Item_ID: " + curKey + " X: " + curAr[0] + ", Y: " + curAr[1]);
+			out.print("<br>Item_ID: " + curKey + " X: " + curAr[0] + ", Y: " + curAr[1]);
 		}
-		*/
+
 
 
 		/*

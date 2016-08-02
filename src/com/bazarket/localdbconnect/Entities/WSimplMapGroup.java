@@ -15,8 +15,9 @@ public class WSimplMapGroup extends Group {
     private HashMap<Integer, int[]> simpleGroupItemsMap;
 
 
-    public WSimplMapGroup(int id, Connection connection) {
-        super(id, connection);
+    public WSimplMapGroup(int id) {
+
+        super(id);
     }
 
     public HashMap<Integer, int[]> getSimpleGroupItemsMap(){

@@ -7,6 +7,8 @@ import javax.servlet.http.*;
 import com.bazarket.localdbconnect.DAO.GroupDao;
 import com.bazarket.localdbconnect.DAO.KonstrElementDao;
 import com.bazarket.localdbconnect.Entities.Group;
+import com.bazarket.localdbconnect.Entities.WSimplMapGroup;
+import com.bazarket.localdbconnect.model.ElementsOperations.RemakeMap;
 //import com.bazarket.localdbconnect.model.*;
 import java.sql.*;
 import java.util.HashMap;
@@ -15,12 +17,16 @@ import java.util.Map;
 
 public class DbAccessLoc extends HttpServlet{
 
+	//Can be here a groupDao field?
+	private final static boolean INCLUDING_ITEMS_YES = true;
 
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException{
 
 		Connection connection = (Connection) getServletContext().getAttribute("connection");
+
+		GroupDao groupDao = new GroupDao(connection);
 
 
 	//	response.setContentType("text/html");
@@ -39,17 +45,22 @@ public class DbAccessLoc extends HttpServlet{
 		String loginFromHtml = request.getParameter("loginEmail");
 
 
-		//moove to DAO start
-		Group newGroup = new Group(idElementInt, connection);
-		//boolean IS_TO_GET_FROM_DB = true;
+		Group newTransObjectGroup = new Group(idElementInt);
+		//
 
-		Map<int[], int[]> allGroupItemsMap = newGroup.receiveActualItemsGroupMapFromDB();
-		System.out.println("allGroupItemsList.size() " + allGroupItemsMap.size());
+
+// I need in actual items from group
+		newTransObjectGroup = groupDao.getByIdFilledUpGroup(newTransObjectGroup, INCLUDING_ITEMS_YES);
+
+		//Map<int[], int[]> allGroupItemsMap = newGroup.receiveActualItemsGroupMapFromDB();
+		//System.out.println("allGroupItemsList.size() " + allGroupItemsMap.size());
+
+		WSimplMapGroup simpleTransObjectGroup = RemakeMap.returnSimplifiedTransObjectGroup(newTransObjectGroup);
 
 
 		session.setAttribute("loginMail", loginFromHtml);
 
-		request.setAttribute("groupItemsMap", allGroupItemsMap);
+		request.setAttribute("groupItemsMap", simpleTransObjectGroup.getSimpleGroupItemsMap());
 
 		RequestDispatcher view = request.getRequestDispatcher("resultDB.jsp");
 		view.forward(request,response);

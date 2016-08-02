@@ -90,7 +90,7 @@ Here are 2 sets of the data are on a screen
        <!--
        <input type = "submit" name = "newGroupMove" value = "true">
        -->
-       
+
        <input type = "submit" value = "To moove new Group items">
 
 </form>
